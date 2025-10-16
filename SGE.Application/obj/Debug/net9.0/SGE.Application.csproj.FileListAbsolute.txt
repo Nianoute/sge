@@ -1,0 +1,15 @@
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\bin\Debug\net9.0\SGE.Application.deps.json
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\bin\Debug\net9.0\SGE.Application.dll
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\bin\Debug\net9.0\SGE.Application.pdb
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\bin\Debug\net9.0\SGE.Core.dll
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\bin\Debug\net9.0\SGE.Core.pdb
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Application.csproj.AssemblyReference.cache
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Application.AssemblyInfoInputs.cache
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Application.AssemblyInfo.cs
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Application.csproj.CoreCompileInputs.cache
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Appl.2AD58D19.Up2Date
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Application.dll
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\refint\SGE.Application.dll
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Application.pdb
+C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\ref\SGE.Application.dll
