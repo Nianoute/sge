@@ -1,7 +1,7 @@
-﻿namespace SGE.Core.Enums;
+namespace SGE.Core.Enums;
 
 /// <summary>
-///     Represents the various types of leave that an employee can request.
+/// Represents the various types of leave that an employee can request.
 /// </summary>
 public enum LeaveType
 {

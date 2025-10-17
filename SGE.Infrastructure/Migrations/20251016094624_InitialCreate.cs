@@ -23,10 +23,8 @@ namespace SGE.Infrastructure.Migrations
                     Code = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: false),
-                    DeletedBy = table.Column<string>(type: "text", nullable: false)
+                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +45,11 @@ namespace SGE.Infrastructure.Migrations
                     Position = table.Column<string>(type: "text", nullable: false),
                     Salary = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
                     HireDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DepartmentId = table.Column<int>(type: "integer", nullable: false)
+                    DepartmentId = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedBy = table.Column<string>(type: "text", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,13 +74,12 @@ namespace SGE.Infrastructure.Migrations
                     BreakDuration = table.Column<TimeSpan>(type: "interval", nullable: true),
                     WorkedHours = table.Column<decimal>(type: "numeric(5,2)", nullable: false),
                     OvertimeHours = table.Column<decimal>(type: "numeric(5,2)", nullable: false),
+                    Notes = table.Column<string>(type: "text", nullable: false),
                     EmployeeId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: false),
-                    DeletedBy = table.Column<string>(type: "text", nullable: false)
+                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -109,10 +110,8 @@ namespace SGE.Infrastructure.Migrations
                     EmployeeId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: false),
-                    DeletedBy = table.Column<string>(type: "text", nullable: false)
+                    UpdatedBy = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

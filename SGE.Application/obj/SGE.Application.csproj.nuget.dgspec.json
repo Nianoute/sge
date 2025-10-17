@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj": {}
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Application\\SGE.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj": {
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Application\\SGE.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj",
+        "projectUniqueName": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Application\\SGE.Application.csproj",
         "projectName": "SGE.Application",
-        "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj",
-        "packagesPath": "C:\\Users\\mewtw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\obj\\",
+        "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Application\\SGE.Application.csproj",
+        "packagesPath": "C:\\Users\\nfaly\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mewtw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nfaly\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -26,8 +26,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj": {
-                "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj"
+              "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Core\\SGE.Core.csproj": {
+                "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Core\\SGE.Core.csproj"
               }
             }
           }
@@ -69,21 +69,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj": {
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Core\\SGE.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj",
+        "projectUniqueName": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Core\\SGE.Core.csproj",
         "projectName": "SGE.Core",
-        "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj",
-        "packagesPath": "C:\\Users\\mewtw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\obj\\",
+        "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Core\\SGE.Core.csproj",
+        "packagesPath": "C:\\Users\\nfaly\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\SGE\\SGE.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mewtw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nfaly\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -128,7 +128,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

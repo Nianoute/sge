@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\SGE.Core\SGE.Core.csproj"/>
+      <ProjectReference Include="..\SGE.Core\SGE.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="15.0.1"/>
+      <PackageReference Include="AutoMapper" Version="15.0.1" />
     </ItemGroup>
 
 </Project>

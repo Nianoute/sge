@@ -1,7 +1,7 @@
-﻿namespace SGE.Core.Enums;
+namespace SGE.Core.Enums;
 
 /// <summary>
-///     Represents the status of a leave request within the system.
+/// Represents the status of a leave request within the system.
 /// </summary>
 public enum LeaveStatus
 {

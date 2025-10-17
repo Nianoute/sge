@@ -1,19 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SGE.Core.Entities;
-
 namespace SGE.Infrastructure.Data;
 
 public class ApplicationDbContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    {
-    }
-
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext>
+        options) : base(options) { }
     public DbSet<Department> Departments { get; set; }
-    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Employee> Employees { get; set; } 
     public DbSet<Attendance> Attendances { get; set; }
     public DbSet<LeaveRequest> LeaveRequests { get; set; }
-
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -29,10 +25,14 @@ public class ApplicationDbContext : DbContext
         builder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.FirstName).IsRequired().HasMaxLength(50);
-            entity.Property(e => e.LastName).IsRequired().HasMaxLength(50);
-            entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
-            entity.Property(e => e.Salary).HasColumnType("decimal(18,2)");
+            entity.Property(e =>
+                e.FirstName).IsRequired().HasMaxLength(50);
+            entity.Property(e =>
+                e.LastName).IsRequired().HasMaxLength(50);
+            entity.Property(e =>
+                e.Email).IsRequired().HasMaxLength(100);
+            entity.Property(e =>
+                e.Salary).HasColumnType("decimal(18,2)");
             entity.HasIndex(e => e.Email).IsUnique();
             entity.HasOne(e => e.Department)
                 .WithMany(d => d.Employees)
@@ -51,9 +51,7 @@ public class ApplicationDbContext : DbContext
                 .WithMany(e => e.Attendances)
                 .HasForeignKey(a => a.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade);
-            entity.HasIndex(a => new
-            {
-                a.EmployeeId, a.Date
+            entity.HasIndex(a => new { a.EmployeeId, a.Date
             }).IsUnique();
         });
 // Configuration LeaveRequest
@@ -72,4 +70,5 @@ public class ApplicationDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
         });
     }
+    
 }
