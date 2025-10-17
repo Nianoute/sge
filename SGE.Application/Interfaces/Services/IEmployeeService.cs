@@ -76,8 +76,7 @@ public interface IEmployeeService
     ///     A task that represents the asynchronous operation. The task  result is a boolean value indicating whether the
     ///     update was successful.
     /// </returns>
-    Task<bool> UpdateAsync(int id, EmployeeUpdateDto dto,
-        CancellationToken cancellationToken = default);
+    Task<bool> UpdateAsync(int id, EmployeeUpdateDto dto, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Deletes an employee by their unique identifier asynchronously.

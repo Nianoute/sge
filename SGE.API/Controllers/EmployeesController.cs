@@ -112,10 +112,10 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     successful or <c>NotFound</c> if the employee is not found.
     /// </returns>
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update(int id, EmployeeUpdateDto
-        dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(int id, EmployeeUpdateDto dto, CancellationToken cancellationToken)
     {
-// TODO
+        var ok = await employeeService.UpdateAsync(id, dto, cancellationToken);
+        if (!ok) return NotFound();
         return NoContent();
     }
 
@@ -129,8 +129,7 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     if the employee does not exist.
     /// </returns>
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id, CancellationToken
-        cancellationToken)
+    public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
 // TODO
         return NoContent();

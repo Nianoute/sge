@@ -40,8 +40,7 @@ public class EmployeeService(
     public async Task<EmployeeDto?> GetByIdAsync(int id,
         CancellationToken cancellationToken = default)
     {
-        var emp = await employeeRepository.GetByIdAsync(id,
-            cancellationToken);
+        var emp = await employeeRepository.GetWithDepartmentAsync(id, cancellationToken);
         return emp == null ? null : mapper.Map<EmployeeDto>(emp);
     }
 
@@ -117,7 +116,10 @@ public class EmployeeService(
     public async Task<bool> UpdateAsync(int id, EmployeeUpdateDto dto,
         CancellationToken cancellationToken = default)
     {
-// TODO
+        var entity = await employeeRepository.GetByIdAsync(id, cancellationToken);
+        if (entity == null) return false;
+        mapper.Map(dto, entity);
+        await employeeRepository.UpdateAsync(entity, cancellationToken);
         return true;
     }
 
