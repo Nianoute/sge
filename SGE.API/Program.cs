@@ -15,6 +15,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile).Assembly);
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 // Add services to the container.
 builder.Services.AddControllers();
