@@ -1,0 +1,3 @@
+# Ignorer les dossiers de build .NET
+bin/
+obj/
