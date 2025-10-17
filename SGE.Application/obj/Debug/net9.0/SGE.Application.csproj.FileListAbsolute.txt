@@ -13,3 +13,4 @@ C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Applicatio
 C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\refint\SGE.Application.dll
 C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\SGE.Application.pdb
 C:\Users\mewtw\RiderProjects\sge\SGE.Application\obj\Debug\net9.0\ref\SGE.Application.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.Application\obj\Debug\net9.0\SGE.Application.sourcelink.json
