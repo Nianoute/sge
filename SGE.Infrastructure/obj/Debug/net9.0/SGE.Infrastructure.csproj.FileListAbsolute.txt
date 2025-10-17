@@ -17,3 +17,4 @@ C:\Users\mewtw\RiderProjects\sge\SGE.Infrastructure\obj\Debug\net9.0\refint\SGE.
 C:\Users\mewtw\RiderProjects\sge\SGE.Infrastructure\obj\Debug\net9.0\SGE.Infrastructure.pdb
 C:\Users\mewtw\RiderProjects\sge\SGE.Infrastructure\obj\Debug\net9.0\SGE.Infrastructure.genruntimeconfig.cache
 C:\Users\mewtw\RiderProjects\sge\SGE.Infrastructure\obj\Debug\net9.0\ref\SGE.Infrastructure.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.Infrastructure\obj\Debug\net9.0\SGE.Infrastructure.sourcelink.json

@@ -139,3 +139,4 @@ C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.IdentityMode
 C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\obj\Debug\net9.0\SGE.API.sourcelink.json
