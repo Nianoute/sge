@@ -1,8 +1,11 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using SGE.Application.DTOs.Employees;
 using SGE.Application.Interfaces.Repositories;
 using SGE.Application.Interfaces.Services;
 using SGE.Application.Mappings;
 using SGE.Application.Services;
+using SGE.Application.Validators;
 using SGE.Infrastructure.Data;
 using SGE.Infrastructure.Repositories;
 
@@ -17,6 +20,14 @@ builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+// Services
+builder.Services.AddScoped<IExcelService, ExcelService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+// Validators
+builder.Services.AddScoped<IValidator<EmployeeImportDto>, EmployeeImportValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<EmployeeImportValidator>();
 
 // Add services to the container.
 builder.Services.AddControllers();
