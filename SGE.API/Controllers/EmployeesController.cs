@@ -92,8 +92,7 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     An asynchronous task that returns an action result containing the created EmployeeDto object.
     /// </returns>
     [HttpPost]
-    public async Task<ActionResult<EmployeeDto>>
-        Create(EmployeeCreateDto dto, CancellationToken cancellationToken)
+    public async Task<ActionResult<EmployeeDto>> Create(EmployeeCreateDto dto, CancellationToken cancellationToken)
     {
         var created = await employeeService.CreateAsync(dto,
             cancellationToken);
@@ -132,7 +131,7 @@ public class EmployeesController(IEmployeeService employeeService) :
     public async Task<IActionResult> Delete(int id, CancellationToken
         cancellationToken)
     {
-// TODO
+        await employeeService.DeleteAsync(id, cancellationToken);
         return NoContent();
     }
 }

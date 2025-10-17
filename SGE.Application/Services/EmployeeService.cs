@@ -133,7 +133,15 @@ public class EmployeeService(
     public async Task<bool> DeleteAsync(int id, CancellationToken
         cancellationToken = default)
     {
-// TODO
+        try
+        {
+            await employeeRepository.DeleteAsync(id,cancellationToken);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
         return true;
     }
 }

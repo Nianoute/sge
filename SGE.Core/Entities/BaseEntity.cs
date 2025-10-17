@@ -18,11 +18,6 @@ public abstract class BaseEntity
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     /// <summary>
-    ///     Gets or sets the date and time when the entity was deleted.
-    /// </summary>
-    public DateTime DeletedAt { get; set; } = DateTime.UtcNow;
-
-    /// <summary>
     ///     Gets or sets the identifier of the user who created the entity.
     /// </summary>
     public string CreatedBy { get; set; } = string.Empty;
@@ -31,9 +26,5 @@ public abstract class BaseEntity
     ///     Gets or sets the identifier of the user who last updated the entity.
     /// </summary>
     public string UpdatedBy { get; set; } = string.Empty;
-
-    /// <summary>
-    ///     Gets or sets the identifier of the user who deleted the entity.
-    /// </summary>
-    public string DeletedBy { get; set; } = string.Empty;
+    
 }

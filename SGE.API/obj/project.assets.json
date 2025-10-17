@@ -3124,19 +3124,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mewtw\\.nuget\\packages\\": {}
+    "C:\\Users\\nfaly\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API\\SGE.API.csproj",
+      "projectUniqueName": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.API\\SGE.API.csproj",
       "projectName": "SGE.API",
-      "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API\\SGE.API.csproj",
-      "packagesPath": "C:\\Users\\mewtw\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API\\obj\\",
+      "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.API\\SGE.API.csproj",
+      "packagesPath": "C:\\Users\\nfaly\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mewtw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\nfaly\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3148,11 +3148,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj": {
-              "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj"
+            "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj": {
+              "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj"
             },
-            "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Infrastructure\\SGE.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Infrastructure\\SGE.Infrastructure.csproj"
+            "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Infrastructure\\SGE.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Infrastructure\\SGE.Infrastructure.csproj"
             }
           }
         }
@@ -3209,7 +3209,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

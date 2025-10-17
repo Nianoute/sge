@@ -1,6 +1,7 @@
-﻿namespace SGE.Core.Entities;
+﻿ 
+namespace SGE.Core.Entities;
 
-public class Employee
+public class Employee : BaseEntity
 {
     /// <summary>
     ///     Gets or sets the first name of the employee.
