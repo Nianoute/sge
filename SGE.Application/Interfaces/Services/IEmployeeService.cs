@@ -88,4 +88,7 @@ public interface IEmployeeService
     ///     deletion was  successful.
     /// </returns>
     Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default);
+
+    Task<EmployeeImportResultDto>
+        ImportFromExcelAsync(Stream fileStream, CancellationToken cancellationToken = default);
 }

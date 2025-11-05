@@ -32,7 +32,5 @@ public class EmployeeDto
     /// </summary>
     public string DepartmentName { get; set; } = string.Empty;
 
-    public string DepartmentPosition { get; set; } = string.Empty;
-
     public int DepartmentId { get; set; }
 }
