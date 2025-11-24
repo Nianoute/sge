@@ -1,0 +1,20 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  sge.api:
+    build:
+      context: "C:\\Users\\mewtw\\RiderProjects\\SGE"
+      dockerfile: "SGE.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/SGE.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "sge.api:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API:/app:rw"
+    - "C:\\Users\\mewtw\\RiderProjects\\SGE:/src:rw"
+    - "C:\\Users\\mewtw\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
