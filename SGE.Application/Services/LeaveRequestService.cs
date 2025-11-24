@@ -2,7 +2,9 @@
 using SGE.Application.DTOs.LeaveRequests;
 using SGE.Application.Interfaces.Repositories;
 using SGE.Application.Interfaces.Services;
+using SGE.Core.Entities;
 using SGE.Core.Enums;
+using SGE.Core.Exceptions;
 
 namespace SGE.Application.Services;
 
@@ -31,7 +33,26 @@ public class LeaveRequestService(
             dto,
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var employee = await
+            employeeRepository.GetByIdAsync(dto.EmployeeId, cancellationToken);
+        if (employee is null)
+            throw new EmployeeNotFoundException(dto.EmployeeId);
+        if (dto.EndDate < dto.StartDate)
+            throw new ValidationException("EndDate", "La date de fin doit être supérieure à la date de début.");
+        if (dto.StartDate < DateTime.Today)
+            throw new ValidationException("StartDate",
+                "La date de début doit être supérieure ou égale à la date de jour.");
+        var daysRequested = CalculateBusinessDays(dto.StartDate,
+            dto.EndDate);
+        var hasConflict = await HasConflictingLeaveAsync(dto.EmployeeId,
+            dto.StartDate, dto.EndDate, cancellationToken: cancellationToken);
+        if (hasConflict)
+            throw new ConflictingLeaveRequestException(dto.StartDate, dto.EndDate);
+        var entity = mapper.Map<LeaveRequest>(dto);
+        entity.DaysRequested = daysRequested;
+        await leaveRequestRepository.AddAsync(entity,
+            cancellationToken);
+        return mapper.Map<LeaveRequestDto>(entity);
     }
 
     /// <summary>
