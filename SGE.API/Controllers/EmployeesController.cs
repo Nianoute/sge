@@ -112,10 +112,10 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     successful or <c>NotFound</c> if the employee is not found.
     /// </returns>
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Update(int id, EmployeeUpdateDto
-        dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(int id, EmployeeUpdateDto dto, CancellationToken cancellationToken)
     {
-// TODO
+        var ok = await employeeService.UpdateAsync(id, dto, cancellationToken);
+        if (!ok) return NotFound();
         return NoContent();
     }
 
@@ -129,10 +129,50 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     if the employee does not exist.
     /// </returns>
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id, CancellationToken
-        cancellationToken)
+    public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
 // TODO
         return NoContent();
+    }
+
+    [HttpPost("import")]
+    [ProducesResponseType(typeof(EmployeeImportResultDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<EmployeeImportResultDto>> Import(
+        IFormFile file,
+        CancellationToken cancellationToken)
+    {
+        // Vérifier que le fichier existe
+        if (file == null || file.Length == 0)
+            return BadRequest("Aucun fichier fourni");
+
+        // Vérifier l'extension
+        var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+        if (extension != ".xlsx")
+            return BadRequest("Seuls les fichiers Excel (.xlsx) sont acceptés");
+
+        // Vérifier le type MIME
+        if (file.ContentType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            return BadRequest("Type de fichier invalide");
+
+        // Vérifier la taille (par exemple, max 10 MB)
+        if (file.Length > 10 * 1024 * 1024)
+            return BadRequest("Le fichier est trop volumineux (max 10 MB)");
+
+        using var stream = file.OpenReadStream();
+        var result = await employeeService.ImportFromExcelAsync(stream, cancellationToken);
+
+        return Ok(result);
+    }
+
+    [HttpGet("export")]
+    [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Export(CancellationToken cancellationToken)
+    {
+        // var fileBytes = await employeeService.ExportToExcelAsync(cancellationToken);
+        // var fileName = $"Employees_{DateTime.UtcNow:yyyyMMdd_HHmmss}.xlsx";
+        //
+        // return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+        return Ok();
     }
 }

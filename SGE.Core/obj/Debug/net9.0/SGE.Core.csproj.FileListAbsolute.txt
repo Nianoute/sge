@@ -9,3 +9,4 @@ C:\Users\mewtw\RiderProjects\sge\SGE.Core\obj\Debug\net9.0\SGE.Core.dll
 C:\Users\mewtw\RiderProjects\sge\SGE.Core\obj\Debug\net9.0\refint\SGE.Core.dll
 C:\Users\mewtw\RiderProjects\sge\SGE.Core\obj\Debug\net9.0\SGE.Core.pdb
 C:\Users\mewtw\RiderProjects\sge\SGE.Core\obj\Debug\net9.0\ref\SGE.Core.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.Core\obj\Debug\net9.0\SGE.Core.sourcelink.json

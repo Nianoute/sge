@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SGE.Application.DTOs.Employees;
 using SGE.Application.Interfaces.Repositories;
 using SGE.Application.Interfaces.Services;
@@ -9,6 +10,8 @@ namespace SGE.Application.Services;
 public class EmployeeService(
     IEmployeeRepository employeeRepository,
     IDepartmentRepository departmentRepository,
+    IExcelService excelService,
+    IValidator<EmployeeImportDto> importValidator,
     IMapper mapper) :
     IEmployeeService
 {
@@ -40,8 +43,7 @@ public class EmployeeService(
     public async Task<EmployeeDto?> GetByIdAsync(int id,
         CancellationToken cancellationToken = default)
     {
-        var emp = await employeeRepository.GetByIdAsync(id,
-            cancellationToken);
+        var emp = await employeeRepository.GetWithDepartmentAsync(id, cancellationToken);
         return emp == null ? null : mapper.Map<EmployeeDto>(emp);
     }
 
@@ -94,7 +96,7 @@ public class EmployeeService(
     {
         var department = await departmentRepository.GetByIdAsync(dto.DepartmentId, cancellationToken);
         if (department == null)
-            throw new ApplicationException("Il n'existe aucundepartement avec cet identifiant");
+            throw new ApplicationException("Il n'existe aucun departement avec cet identifiant");
         var existingEmployee = await
             employeeRepository.GetByEmailAsync(dto.Email, cancellationToken);
         if (existingEmployee != null)
@@ -117,7 +119,10 @@ public class EmployeeService(
     public async Task<bool> UpdateAsync(int id, EmployeeUpdateDto dto,
         CancellationToken cancellationToken = default)
     {
-// TODO
+        var entity = await employeeRepository.GetByIdAsync(id, cancellationToken);
+        if (entity == null) return false;
+        mapper.Map(dto, entity);
+        await employeeRepository.UpdateAsync(entity, cancellationToken);
         return true;
     }
 
@@ -135,5 +140,90 @@ public class EmployeeService(
     {
 // TODO
         return true;
+    }
+
+    public async Task<EmployeeImportResultDto> ImportFromExcelAsync(Stream fileStream,
+        CancellationToken cancellationToken = default)
+    {
+        var result = new EmployeeImportResultDto();
+
+        // Lecture du fichier excel
+        var importedEmployees =
+            await excelService.ImportFromExcelAsync<EmployeeImportDto>(fileStream, cancellationToken);
+        result.TotalRows = importedEmployees.Count;
+
+        // 🔸 Suppression de la récupération complète des départements
+        // var departments = (await departmentRepository.GetAllAsync(cancellationToken)).ToList();
+        // var departmentDict = departments.ToDictionary(d => d.Name.ToLower(), d => d.Id);
+
+        foreach (var importDto in importedEmployees)
+        {
+            var validationResult = await importValidator.ValidateAsync(importDto, cancellationToken);
+
+            if (!validationResult.IsValid)
+            {
+                result.ErrorCount++;
+                foreach (var error in validationResult.Errors)
+                    result.Errors.Add(new ImportError
+                    {
+                        RowNumber = importDto.RowNumber,
+                        Field = error.PropertyName,
+                        Message = error.ErrorMessage
+                    });
+                continue;
+            }
+
+            try
+            {
+                // 🔸 On vérifie maintenant avec FindByIdDepartement
+                var department = await departmentRepository.GetByIdAsync(importDto.DepartmentId, cancellationToken);
+                if (department == null)
+                {
+                    result.ErrorCount++;
+                    result.Errors.Add(new ImportError
+                    {
+                        RowNumber = importDto.RowNumber,
+                        Field = nameof(importDto.DepartmentId),
+                        Message = $"Département '{importDto.DepartmentId}' introuvable"
+                    });
+                    continue;
+                }
+
+                // Création de l'employé via DTO
+                var createDto = new EmployeeCreateDto
+                {
+                    FirstName = importDto.FirstName,
+                    LastName = importDto.LastName,
+                    Email = importDto.Email,
+                    PhoneNumber = importDto.PhoneNumber,
+                    Address = importDto.Address,
+                    Position = importDto.Position,
+                    Salary = importDto.Salary,
+                    HireDate = DateTime.SpecifyKind(importDto.HireDate, DateTimeKind.Utc),
+                    DepartmentId = department.Id
+                };
+
+                await CreateAsync(createDto, cancellationToken);
+                result.SuccessCount++;
+            }
+            catch (Exception ex)
+            {
+                result.ErrorCount++;
+                result.Errors.Add(new ImportError
+                {
+                    RowNumber = importDto.RowNumber,
+                    Field = "General",
+                    Message = $"Erreur lors de la création: {ex.Message}"
+                });
+            }
+        }
+
+        return result;
+    }
+
+    public async Task<byte[]> ExportToExcelAsync(CancellationToken cancellationToken = default)
+    {
+        var employees = await GetAllAsync(cancellationToken);
+        return await excelService.ExportToExcelAsync(employees, "Employés", cancellationToken);
     }
 }

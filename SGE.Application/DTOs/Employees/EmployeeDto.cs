@@ -31,4 +31,6 @@ public class EmployeeDto
     ///     Gets or sets the name of the department associated with the employee.
     /// </summary>
     public string DepartmentName { get; set; } = string.Empty;
+
+    public int DepartmentId { get; set; }
 }
