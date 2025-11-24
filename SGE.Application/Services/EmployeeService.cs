@@ -138,7 +138,10 @@ public class EmployeeService(
     public async Task<bool> DeleteAsync(int id, CancellationToken
         cancellationToken = default)
     {
-// TODO
+        var entity = await departmentRepository.GetByIdAsync(id, cancellationToken);
+        if (entity == null) return false;
+        await departmentRepository.DeleteAsync(entity.Id,
+            cancellationToken);
         return true;
     }
 

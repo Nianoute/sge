@@ -28,21 +28,72 @@ public class AttendanceService(
     ///     /// Thrown when the employee has already clocked in on the same day or when there is an issue creating or updating
     ///     the attendance record.
     /// </exception>
-    public async Task<AttendanceDto> ClockInAsync(ClockInOutDto
-            clockInDto,
+    public async Task<AttendanceDto> ClockInAsync(
+        ClockInOutDto clockInDto,
         CancellationToken cancellationToken = default)
     {
-        if (!await employeeRepository.ExistsAsync(clockInDto.EmployeeId,
-                cancellationToken))
+        // Vérifier que l'employé existe
+        if (!await employeeRepository.ExistsAsync(clockInDto.EmployeeId, cancellationToken))
             throw new KeyNotFoundException($"Employee with ID {clockInDto.EmployeeId} not found");
+
         var date = clockInDto.DateTime.Date;
         var time = clockInDto.DateTime.TimeOfDay;
-// TODO
-// Vérifier s'il existe déjà une entrée pour la date
-// Créer une nouvelle entrée de présence
-// Mettre à jour l'entrée existante
-        throw new NotImplementedException();
+
+        // Récupérer toutes les présences de l'employé
+        var attendances = await attendanceRepository
+            .GetByEmployeeAsync(clockInDto.EmployeeId, cancellationToken);
+
+        // Trouver l'entrée correspondant à la date
+        var existingAttendance = attendances
+            .FirstOrDefault(a => a.Date.Date == date);
+
+        if (existingAttendance == null)
+        {
+            // *****************************
+            // 1️⃣ Création d'une nouvelle entrée
+            // *****************************
+            var newAttendance = new Attendance
+            {
+                EmployeeId = clockInDto.EmployeeId,
+                Date = date,
+                ClockIn = time,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await attendanceRepository.AddAsync(newAttendance, cancellationToken);
+
+            return new AttendanceDto
+            {
+                EmployeeId = newAttendance.EmployeeId,
+                Date = newAttendance.Date,
+                ClockIn = newAttendance.ClockIn,
+                ClockOut = newAttendance.ClockOut
+            };
+        }
+        else
+        {
+            // *****************************
+            // 2️⃣ Mise à jour d'une entrée existante
+            // *****************************
+            if (existingAttendance.ClockIn != null)
+                throw new InvalidOperationException("Clock-in already registered for this date.");
+
+            existingAttendance.ClockIn = time;
+            existingAttendance.UpdatedAt = DateTime.UtcNow;
+
+            await attendanceRepository.UpdateAsync(existingAttendance, cancellationToken);
+
+            return new AttendanceDto
+            {
+                EmployeeId = existingAttendance.EmployeeId,
+                Date = existingAttendance.Date,
+                ClockIn = existingAttendance.ClockIn,
+                ClockOut = existingAttendance.ClockOut
+            };
+        }
     }
+
+
 
     /// <summary>
     ///     Registers the clock-out time for an employee. It updates the existing attendance record for the employee
@@ -67,7 +118,6 @@ public class AttendanceService(
             throw new KeyNotFoundException($"Employee with ID {clockOutDto.EmployeeId} not found");
         var date = clockOutDto.DateTime.Date;
         var time = clockOutDto.DateTime.TimeOfDay;
-//TODO
 // Vérifier s'il existe déjà une entrée pour la date
         var attendance = new Attendance();
         if (attendance == null)

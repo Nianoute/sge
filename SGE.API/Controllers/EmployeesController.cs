@@ -131,7 +131,6 @@ public class EmployeesController(IEmployeeService employeeService) :
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
-// TODO
         return NoContent();
     }
 
