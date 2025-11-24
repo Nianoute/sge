@@ -130,8 +130,7 @@ public class EmployeeService(
     ///     A task that represents the asynchronous operation. The task result contains a boolean value indicating whether
     ///     the deletion was successful.
     /// </returns>
-    public async Task<bool> DeleteAsync(int id, CancellationToken
-        cancellationToken = default)
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
         try
         {
