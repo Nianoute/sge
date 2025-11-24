@@ -16,220 +16,205 @@ public class LeaveRequestService(
     /// <summary>
     ///     Creates a new leave request in the system asynchronously.
     /// </summary>
-    /// <param name="dto">
-    ///     The data required to create a new leave request, including employee ID, leave type, start date, end date, and
-    ///     reason.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    ///     The details of the created leave request wrapped in a LeaveRequestDto.
-    /// </returns>
-    /// <exception cref="NotImplementedException">
-    ///     Thrown if the method is not implemented.
-    /// </exception>
-    public async Task<LeaveRequestDto> CreateAsync(LeaveRequestCreateDto
-            dto,
+    public async Task<LeaveRequestDto> CreateAsync(LeaveRequestCreateDto dto,
         CancellationToken cancellationToken = default)
     {
-        var employee = await
-            employeeRepository.GetByIdAsync(dto.EmployeeId, cancellationToken);
+        var employee = await employeeRepository.GetByIdAsync(dto.EmployeeId, cancellationToken);
         if (employee is null)
             throw new EmployeeNotFoundException(dto.EmployeeId);
+
         if (dto.EndDate < dto.StartDate)
             throw new ValidationException("EndDate", "La date de fin doit être supérieure à la date de début.");
+
         if (dto.StartDate < DateTime.Today)
             throw new ValidationException("StartDate",
                 "La date de début doit être supérieure ou égale à la date de jour.");
-        var daysRequested = CalculateBusinessDays(dto.StartDate,
-            dto.EndDate);
+
+        var daysRequested = CalculateBusinessDays(dto.StartDate, dto.EndDate);
+
         var hasConflict = await HasConflictingLeaveAsync(dto.EmployeeId,
             dto.StartDate, dto.EndDate, cancellationToken: cancellationToken);
         if (hasConflict)
             throw new ConflictingLeaveRequestException(dto.StartDate, dto.EndDate);
+
         var entity = mapper.Map<LeaveRequest>(dto);
         entity.DaysRequested = daysRequested;
-        await leaveRequestRepository.AddAsync(entity,
-            cancellationToken);
+
+        await leaveRequestRepository.AddAsync(entity, cancellationToken);
+
         return mapper.Map<LeaveRequestDto>(entity);
     }
 
     /// <summary>
     ///     Retrieves the details of a leave request by its unique identifier asynchronously.
     /// </summary>
-    /// <param name="id">
-    ///     The unique identifier of the leave request to be retrieved.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    ///     The details of the leave request wrapped in a LeaveRequestDto, or null if no leave request with the specified ID
-    ///     exists.
-    /// </returns>
-    /// <exception cref="NotImplementedException">
-    ///     Thrown if the method is not implemented.
-    /// </exception>
     public async Task<LeaveRequestDto?> GetByIdAsync(int id,
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var leaveRequest = await leaveRequestRepository.GetByIdAsync(id, cancellationToken);
+
+        if (leaveRequest is null)
+            throw new LeaveRequestNotFoundException(id);
+
+        return mapper.Map<LeaveRequestDto>(leaveRequest);
     }
 
     /// <summary>
     ///     Retrieves the leave requests associated with a specific employee asynchronously.
     /// </summary>
-    /// <param name="employeeId">
-    ///     The unique identifier of the employee whose leave requests are to be retrieved.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    ///     A collection of leave request details wrapped in LeaveRequestDto objects.
-    /// </returns>
-    /// <exception cref="NotImplementedException">
-    ///     Thrown if the method is not implemented.
-    /// </exception>
-    public async Task<IEnumerable<LeaveRequestDto>>
-        GetLeaveRequestsByEmployeeAsync(int employeeId,
-            CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<LeaveRequestDto>> GetLeaveRequestsByEmployeeAsync(int employeeId,
+        CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var employee = await employeeRepository.GetByIdAsync(employeeId, cancellationToken);
+        if (employee is null)
+            throw new EmployeeNotFoundException(employeeId);
+
+        var leaveRequests = await leaveRequestRepository.GetByEmployeeIdAsync(employeeId, cancellationToken);
+
+        return mapper.Map<IEnumerable<LeaveRequestDto>>(leaveRequests);
     }
 
     /// <summary>
     ///     Retrieves a collection of leave requests based on the specified status asynchronously.
     /// </summary>
-    /// <param name="status">
-    ///     The status of the leave requests to filter by, such as Pending, Approved, Rejected, or Cancelled.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    ///     A collection of leave requests matching the specified status, wrapped in LeaveRequestDto objects.
-    /// </returns>
-    /// <exception cref="NotImplementedException">
-    ///     Thrown if the method is not implemented.
-    /// </exception>
-    public async Task<IEnumerable<LeaveRequestDto>>
-        GetLeaveRequestsByStatusAsync(LeaveStatus status,
-            CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<LeaveRequestDto>> GetLeaveRequestsByStatusAsync(LeaveStatus status,
+        CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var leaveRequests = await leaveRequestRepository.GetByStatusAsync(status, cancellationToken);
+
+        return mapper.Map<IEnumerable<LeaveRequestDto>>(leaveRequests);
     }
 
     /// <summary>
     ///     Retrieves all leave requests with a status of pending asynchronously.
     /// </summary>
-    /// <returns>
-    ///     A collection of leave requests that are currently pending, wrapped in LeaveRequestDto objects.
-    /// </returns>
-    /// <exception cref="NotImplementedException">
-    ///     Thrown if the method is not implemented.
-    /// </exception>
-    public async Task<IEnumerable<LeaveRequestDto>>
-        GetPendingLeaveRequestsAsync()
+    public async Task<IEnumerable<LeaveRequestDto>> GetPendingLeaveRequestsAsync()
     {
-        throw new NotImplementedException();
+        var leaveRequests = await leaveRequestRepository.GetByStatusAsync(LeaveStatus.Pending);
+
+        return mapper.Map<IEnumerable<LeaveRequestDto>>(leaveRequests);
     }
 
     /// <summary>
     ///     Updates the status of an existing leave request asynchronously.
     /// </summary>
-    /// <param name="id">
-    ///     The unique identifier of the leave request to be updated.
-    /// </param>
-    /// <param name="dto">
-    ///     An object containing the updated status and optional manager comments for the leave request.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    ///     A boolean value indicating whether the operation was successful.
-    /// </returns>
-    /// <exception cref="NotImplementedException">
-    ///     Thrown if the method is not implemented.
-    /// </exception>
     public async Task<bool> UpdateStatusAsync(int id,
         LeaveRequestUpdateDto dto,
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var leaveRequest = await leaveRequestRepository.GetByIdAsync(id, cancellationToken);
+
+        if (leaveRequest is null)
+            throw new LeaveRequestNotFoundException(id);
+
+        // Vérifier la validité de la transition de statut
+        ValidateStatusTransition(leaveRequest.Status, dto.Status);
+
+        // Si le statut est approuvé, vérifier les jours de congé disponibles
+        if (dto.Status == LeaveStatus.Approved)
+        {
+            var year = leaveRequest.StartDate.Year;
+            var remainingDays = await GetRemainingLeaveDaysAsync(leaveRequest.EmployeeId, year, cancellationToken);
+
+            if (leaveRequest.DaysRequested > remainingDays)
+                throw new InsufficientLeaveDaysException(leaveRequest.DaysRequested, remainingDays);
+        }
+
+        // Mettre à jour le statut
+        leaveRequest.Status = dto.Status;
+        leaveRequest.ManagerComments = dto.ManagerComments;
+        leaveRequest.ReviewedAt = DateTime.UtcNow;
+
+        await leaveRequestRepository.UpdateAsync(leaveRequest, cancellationToken);
+
+        return true;
     }
 
     /// <summary>
     ///     Retrieves the remaining leave days for a specific employee in a given year asynchronously.
     /// </summary>
-    /// <param name="employeeId">
-    ///     The unique identifier of the employee for whom the remaining leave days are being retrieved.
-    /// </param>
-    /// <param name="year">
-    ///     The year for which the remaining leave days are being calculated.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     A token to monitor for cancellation requests.
-    /// </param>
-    /// <returns>
-    ///     The total number of remaining leave days for the specified employee and year.
-    /// </returns>
-    /// <exception cref="NotImplementedException">
-    ///     Thrown if the method is not implemented.
-    /// </exception>
-    public async Task<int> GetRemainingLeaveDaysAsync(int employeeId, int
-            year,
+    public async Task<int> GetRemainingLeaveDaysAsync(int employeeId, int year,
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var employee = await employeeRepository.GetByIdAsync(employeeId, cancellationToken);
+        if (employee is null)
+            throw new EmployeeNotFoundException(employeeId);
+
+        // Récupérer toutes les demandes approuvées pour l'année donnée
+        var approvedLeaves = await leaveRequestRepository.GetApprovedLeavesByEmployeeAndYearAsync(
+            employeeId, year, cancellationToken);
+
+        // Calculer le total des jours utilisés
+        var usedDays = approvedLeaves.Sum(l => l.DaysRequested);
+
+        // Supposons que chaque employé a 25 jours de congé par an (à adapter selon vos règles métier)
+        const int annualLeaveDays = 25;
+        var remainingDays = annualLeaveDays - usedDays;
+
+        return Math.Max(0, remainingDays); // Ne peut pas être négatif
     }
 
     /// <summary>
-    ///     Checks if there are any conflicting leave requests for an
-    ///     employee within the specified date range.
+    ///     Checks if there are any conflicting leave requests for an employee within the specified date range.
     /// </summary>
-    /// <param name="employeeId">
-    ///     The ID of the employee for whom the check is being performed.
-    /// </param>
-    /// <param name="startDate">
-    ///     The start date of the leave period to verify for conflicts.
-    /// </param>
-    /// <param name="endDate">
-    ///     The end date of the leave period to verify for conflicts.
-    /// </param>
-    /// <param name="excludeRequestId">
-    ///     An optional leave request ID to exclude from the conflict check, typically used when updating an existing leave
-    ///     request.
-    /// </param>
-    /// <param name="cancellationToken">
-    ///     A token to monitor for cancellation requests during the operation.
-    /// </param>
-    /// <returns>
-    ///     A boolean value indicating whether any conflicting leave requests exist.
-    /// </returns>
-    /// <exception cref="NotImplementedException">
-    ///     Thrown if the method is not implemented.
-    /// </exception>
     public async Task<bool> HasConflictingLeaveAsync(int employeeId,
         DateTime startDate, DateTime endDate,
         int? excludeRequestId = null,
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var existingLeaves = await leaveRequestRepository.GetByEmployeeIdAsync(employeeId, cancellationToken);
+
+        // Filtrer les demandes qui ne sont pas annulées ou rejetées
+        var activeLeaves = existingLeaves.Where(l =>
+            l.Status != LeaveStatus.Rejected &&
+            l.Status != LeaveStatus.Cancelled &&
+            (!excludeRequestId.HasValue || l.Id != excludeRequestId.Value));
+
+        // Vérifier s'il y a un chevauchement de dates
+        foreach (var leave in activeLeaves)
+            // Il y a conflit si les périodes se chevauchent
+            if (startDate <= leave.EndDate && endDate >= leave.StartDate)
+                return true;
+
+        return false;
     }
 
-    private int CalculateBusinessDays(DateTime startDate, DateTime
-        endDate)
+    /// <summary>
+    ///     Valide la transition de statut d'une demande de congé.
+    /// </summary>
+    private void ValidateStatusTransition(LeaveStatus currentStatus, LeaveStatus newStatus)
+    {
+        // Définir les transitions valides
+        var validTransitions = new Dictionary<LeaveStatus, List<LeaveStatus>>
+        {
+            {
+                LeaveStatus.Pending,
+                new List<LeaveStatus> { LeaveStatus.Approved, LeaveStatus.Rejected, LeaveStatus.Cancelled }
+            },
+            { LeaveStatus.Approved, new List<LeaveStatus> { LeaveStatus.Cancelled } },
+            { LeaveStatus.Rejected, new List<LeaveStatus>() }, // Aucune transition possible
+            { LeaveStatus.Cancelled, new List<LeaveStatus>() } // Aucune transition possible
+        };
+
+        if (!validTransitions.ContainsKey(currentStatus) ||
+            !validTransitions[currentStatus].Contains(newStatus))
+            throw new InvalidLeaveStatusTransitionException(currentStatus.ToString(), newStatus.ToString());
+    }
+
+    /// <summary>
+    ///     Calcule le nombre de jours ouvrables entre deux dates.
+    /// </summary>
+    private int CalculateBusinessDays(DateTime startDate, DateTime endDate)
     {
         var businessDays = 0;
         var current = startDate;
+
         while (current <= endDate)
         {
             if (current.DayOfWeek != DayOfWeek.Saturday &&
                 current.DayOfWeek != DayOfWeek.Sunday)
                 businessDays++;
+
             current = current.AddDays(1);
         }
 
