@@ -96,15 +96,18 @@ public class EmployeeService(
     {
         var department = await departmentRepository.GetByIdAsync(dto.DepartmentId, cancellationToken);
         if (department == null)
-            throw new ApplicationException("Il n'existe aucun departement avec cet identifiant");
-        var existingEmployee = await
-            employeeRepository.GetByEmailAsync(dto.Email, cancellationToken);
+            throw new ArgumentNullException();
+
+        var existingEmployee = await employeeRepository.GetByEmailAsync(dto.Email, cancellationToken);
         if (existingEmployee != null)
-            throw new ApplicationException("Cet email existe déjà pourun autre employée");
+            throw new ArgumentNullException();
+
         var entity = mapper.Map<Employee>(dto);
         await employeeRepository.AddAsync(entity, cancellationToken);
+
         return mapper.Map<EmployeeDto>(entity);
     }
+
 
     /// <summary>
     ///     Asynchronously updates an employee's information in the repository using the provided data.
