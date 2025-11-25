@@ -12,8 +12,7 @@ public class EmployeeService(
     IDepartmentRepository departmentRepository,
     IExcelService excelService,
     IValidator<EmployeeImportDto> importValidator,
-    IMapper mapper) :
-    IEmployeeService
+    IMapper mapper) : IEmployeeService
 {
     /// <summary>
     ///     Asynchronously retrieves all employees from the repository and maps them to a collection of EmployeeDto.

@@ -176,10 +176,9 @@ public class EmployeesController(IEmployeeService employeeService) :
     [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> Export(CancellationToken cancellationToken)
     {
-        // var fileBytes = await employeeService.ExportToExcelAsync(cancellationToken);
-        // var fileName = $"Employees_{DateTime.UtcNow:yyyyMMdd_HHmmss}.xlsx";
-        //
-        // return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
-        return Ok();
+        var fileBytes = await employeeService.ExportToExcelAsync(cancellationToken);
+        var fileName = $"Employees_{DateTime.UtcNow:yyyyMMdd_HHmmss}.xlsx";
+
+        return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
     }
 }

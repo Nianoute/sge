@@ -91,4 +91,6 @@ public interface IEmployeeService
 
     Task<EmployeeImportResultDto>
         ImportFromExcelAsync(Stream fileStream, CancellationToken cancellationToken = default);
+
+    Task<byte[]> ExportToExcelAsync(CancellationToken cancellationToken = default);
 }
