@@ -143,7 +143,8 @@ public class AuthService(
     public async Task<bool> LogoutAsync(string userId)
     {
 // Ici revoke tous les refresh tokens de l'utilisateur
-        throw new NotImplementedException();
+        await tokenService.RevokeAllUserRefreshTokensAsync(userId);
+        return true;
     }
     /// <summary>
     /// Revokes a specific refresh token.
