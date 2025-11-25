@@ -84,4 +84,15 @@ public interface ILeaveRequestRepository : IRepository<LeaveRequest>
     /// </returns>
     Task<IEnumerable<LeaveRequest>> GetLeavesByDepartmentAndDateRangeAsync(int departmentId, DateTime startDate,
         DateTime endDate, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    ///     Asynchronously retrieves a leave request by its ID with all related entities.
+    /// </summary>
+    /// <param name="id">The unique identifier of the leave request.</param>
+    /// <param name="cancellationToken">A cancellation token that can be used to observe the cancellation request.</param>
+    /// <returns>
+    ///     A task representing the asynchronous operation. The task result contains the leave request if found, otherwise
+    ///     null.
+    /// </returns>
+    Task<LeaveRequest?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
 }
