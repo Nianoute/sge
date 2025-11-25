@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API\\SGE.API.csproj": {}
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.API\\SGE.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API\\SGE.API.csproj": {
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.API\\SGE.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API\\SGE.API.csproj",
+        "projectUniqueName": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.API\\SGE.API.csproj",
         "projectName": "SGE.API",
-        "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API\\SGE.API.csproj",
-        "packagesPath": "C:\\Users\\mewtw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.API\\obj\\",
+        "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.API\\SGE.API.csproj",
+        "packagesPath": "C:\\Users\\nfaly\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mewtw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nfaly\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -26,11 +26,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj": {
-                "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj"
+              "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj": {
+                "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj"
               },
-              "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Infrastructure\\SGE.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Infrastructure\\SGE.Infrastructure.csproj"
+              "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Infrastructure\\SGE.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Infrastructure\\SGE.Infrastructure.csproj"
               }
             }
           }
@@ -55,6 +55,14 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.9, )"
@@ -70,6 +78,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.10, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.15.0, )"
             }
           },
           "imports": [
@@ -91,21 +103,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj": {
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj",
+        "projectUniqueName": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj",
         "projectName": "SGE.Application",
-        "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj",
-        "packagesPath": "C:\\Users\\mewtw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\obj\\",
+        "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj",
+        "packagesPath": "C:\\Users\\nfaly\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mewtw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nfaly\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -117,8 +129,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj": {
-                "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj"
+              "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj": {
+                "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj"
               }
             }
           }
@@ -150,6 +162,18 @@
             "FluentValidation": {
               "target": "Package",
               "version": "[12.0.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.15.0, )"
             }
           },
           "imports": [
@@ -168,21 +192,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj": {
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj",
+        "projectUniqueName": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj",
         "projectName": "SGE.Core",
-        "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj",
-        "packagesPath": "C:\\Users\\mewtw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\obj\\",
+        "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj",
+        "packagesPath": "C:\\Users\\nfaly\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mewtw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nfaly\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -211,6 +235,20 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.15.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -227,21 +265,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Infrastructure\\SGE.Infrastructure.csproj": {
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Infrastructure\\SGE.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Infrastructure\\SGE.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Infrastructure\\SGE.Infrastructure.csproj",
         "projectName": "SGE.Infrastructure",
-        "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Infrastructure\\SGE.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\mewtw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Infrastructure\\SGE.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\nfaly\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mewtw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nfaly\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -253,11 +291,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj": {
-                "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Application\\SGE.Application.csproj"
+              "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj": {
+                "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Application\\SGE.Application.csproj"
               },
-              "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj": {
-                "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj"
+              "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj": {
+                "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj"
               }
             }
           }
@@ -278,6 +316,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -287,6 +333,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.15.0, )"
             }
           },
           "imports": [
@@ -305,7 +355,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

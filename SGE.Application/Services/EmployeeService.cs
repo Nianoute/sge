@@ -12,8 +12,7 @@ public class EmployeeService(
     IDepartmentRepository departmentRepository,
     IExcelService excelService,
     IValidator<EmployeeImportDto> importValidator,
-    IMapper mapper) :
-    IEmployeeService
+    IMapper mapper) : IEmployeeService
 {
     /// <summary>
     ///     Asynchronously retrieves all employees from the repository and maps them to a collection of EmployeeDto.
@@ -96,15 +95,18 @@ public class EmployeeService(
     {
         var department = await departmentRepository.GetByIdAsync(dto.DepartmentId, cancellationToken);
         if (department == null)
-            throw new ApplicationException("Il n'existe aucun departement avec cet identifiant");
-        var existingEmployee = await
-            employeeRepository.GetByEmailAsync(dto.Email, cancellationToken);
+            throw new ArgumentNullException();
+
+        var existingEmployee = await employeeRepository.GetByEmailAsync(dto.Email, cancellationToken);
         if (existingEmployee != null)
-            throw new ApplicationException("Cet email existe déjà pourun autre employée");
+            throw new ArgumentNullException();
+
         var entity = mapper.Map<Employee>(dto);
         await employeeRepository.AddAsync(entity, cancellationToken);
+
         return mapper.Map<EmployeeDto>(entity);
     }
+
 
     /// <summary>
     ///     Asynchronously updates an employee's information in the repository using the provided data.
@@ -135,10 +137,11 @@ public class EmployeeService(
     ///     A task that represents the asynchronous operation. The task result contains a boolean value indicating whether
     ///     the deletion was successful.
     /// </returns>
-    public async Task<bool> DeleteAsync(int id, CancellationToken
-        cancellationToken = default)
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
-// TODO
+        var entity = await employeeRepository.GetByIdAsync(id, cancellationToken);
+        if (entity == null) return false;
+        await employeeRepository.DeleteAsync(entity.Id, cancellationToken);
         return true;
     }
 

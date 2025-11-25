@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj": {}
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj": {
+    "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj",
+        "projectUniqueName": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj",
         "projectName": "SGE.Core",
-        "projectPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\SGE.Core.csproj",
-        "packagesPath": "C:\\Users\\mewtw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mewtw\\RiderProjects\\SGE\\SGE.Core\\obj\\",
+        "projectPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\SGE.Core.csproj",
+        "packagesPath": "C:\\Users\\nfaly\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nfaly\\Desktop\\ecoles\\Ynov-M2\\webservices\\pt-1\\codes\\sge\\SGE.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mewtw\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nfaly\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -43,6 +43,20 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.15.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -59,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

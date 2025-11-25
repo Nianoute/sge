@@ -82,7 +82,7 @@ public class GlobalExceptionHandlingMiddleware
                 sgeException.StatusCode,
                 traceId),
             ArgumentNullException => ErrorResponse.Create(
-                "Un paramètre requis est manquant.",
+                "Un paramètre requis est manquant." + exception.Message,
                 "ARGUMENT_NULL",
                 400,
                 traceId),
@@ -95,11 +95,6 @@ public class GlobalExceptionHandlingMiddleware
                 "Accès non autorisé.",
                 "UNAUTHORIZED",
                 401,
-                traceId),
-            NotImplementedException => ErrorResponse.Create(
-                "Fonctionnalité non implémentée.",
-                "NOT_IMPLEMENTED",
-                501,
                 traceId),
             TimeoutException => ErrorResponse.Create(
                 "L'opération a expiré.",
