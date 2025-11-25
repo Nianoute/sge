@@ -26,6 +26,9 @@ public class RegisterDto
     /// Gets or sets the confirmation of the password entered by the user.
     /// </summary>
     public string ConfirmPassword { get; set; } = string.Empty;
+    
+    public string role { get; set; } = string.Empty;
+
     /// <summary>
     /// Gets or sets the identifier of the employee associated with the user.
     /// </summary>

@@ -43,7 +43,15 @@ public class AuthService(
             var errors = result.Errors.Select(e => e.Description);
             throw new UserRegistrationException(errors);
         }
+
+        if (registerDto.role != null)
+        {
+            await userManager.AddToRoleAsync(user, registerDto.role);
+        }
+        else
+        {
         await userManager.AddToRoleAsync(user, "User");
+        }
         var roles = await userManager.GetRolesAsync(user);
         var accessToken = tokenService.GenerateAccessToken(user, roles);
         var refreshToken = await
@@ -154,7 +162,8 @@ public class AuthService(
     public async Task<bool> RevokeTokenAsync(string token)
     {
 // Ici revoke le token
-        throw new NotImplementedException();
+        await tokenService.RevokeRefreshTokenAsync(token,"banned");
+        return true;
     }
     /// <summary>
     /// Retrieves the details of the currently authenticated user.

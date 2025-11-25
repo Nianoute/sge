@@ -9,8 +9,7 @@ namespace SGE.API.Controllers;
 public class AuthController(IAuthService authService) : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<ActionResult<AuthResponseDto>> Register(RegisterDto
-        registerDto)
+    public async Task<ActionResult<AuthResponseDto>> Register(RegisterDto registerDto)
     {
         var result = await authService.RegisterAsync(registerDto);
         return Ok(result);
@@ -39,4 +38,16 @@ public class AuthController(IAuthService authService) : ControllerBase
         await authService.LogoutAsync(userId.ToString());
         return Ok(new { message = "Déconnexion réussie" });
     }
+    
+    [HttpPost("revoke")]
+    public async Task<ActionResult> RevokeToken([FromBody] RevokeTokenDto dto)
+    {
+        if (string.IsNullOrWhiteSpace(dto.Token))
+            return BadRequest(new { message = "Token is required" });
+
+        await authService.RevokeTokenAsync(dto.Token);
+
+        return Ok(new { message = "Token révoqué avec succès" });
+    }
+
 }
