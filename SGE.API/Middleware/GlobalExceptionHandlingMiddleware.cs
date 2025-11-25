@@ -82,7 +82,7 @@ public class GlobalExceptionHandlingMiddleware
                 sgeException.StatusCode,
                 traceId),
             ArgumentNullException => ErrorResponse.Create(
-                "Un paramètre requis est manquant.",
+                "Un paramètre requis est manquant." + exception.Message,
                 "ARGUMENT_NULL",
                 400,
                 traceId),

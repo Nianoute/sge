@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SGE.Application.DTOs.Employees;
 using SGE.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SGE.API.Controllers;
 
@@ -9,6 +10,7 @@ namespace SGE.API.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
+[Authorize] // Tous les endpoints nécessitent une authentification
 public class EmployeesController(IEmployeeService employeeService) :
     ControllerBase
 {
@@ -92,8 +94,8 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     An asynchronous task that returns an action result containing the created EmployeeDto object.
     /// </returns>
     [HttpPost]
-    public async Task<ActionResult<EmployeeDto>>
-        Create(EmployeeCreateDto dto, CancellationToken cancellationToken)
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<EmployeeDto>> Create(EmployeeCreateDto dto, CancellationToken cancellationToken)
     {
         var created = await employeeService.CreateAsync(dto,
             cancellationToken);

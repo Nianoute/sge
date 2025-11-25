@@ -4,6 +4,8 @@ using SGE.Application.DTOs.Attendances;
 using SGE.Application.DTOs.Employees;
 using SGE.Application.DTOs.LeaveRequests;
 using SGE.Core.Entities;
+using SGE.Application.DTOs.Users;
+
 
 namespace SGE.Application.Mappings;
 
@@ -41,5 +43,17 @@ public class MappingProfile : Profile
                 opt.MapFrom(src => src.LeaveType.ToString()))
             .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src
                 => src.Status.ToString()));
+        
+        // RegisterDto → ApplicationUser
+        CreateMap<RegisterDto, ApplicationUser>()
+            .ForMember(dest => dest.EmailConfirmed, opt =>
+                opt.MapFrom(src => true))
+            .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src =>
+                DateTime.UtcNow))
+            .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src =>
+                true));
+// ApplicationUser → UserDto
+        CreateMap<ApplicationUser, UserDto>()
+            .ForMember(dest => dest.Roles, opt => opt.Ignore()); // Sera rempli manuellement
     }
 }
