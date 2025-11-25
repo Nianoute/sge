@@ -137,13 +137,11 @@ public class EmployeeService(
     ///     A task that represents the asynchronous operation. The task result contains a boolean value indicating whether
     ///     the deletion was successful.
     /// </returns>
-    public async Task<bool> DeleteAsync(int id, CancellationToken
-        cancellationToken = default)
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
-        var entity = await departmentRepository.GetByIdAsync(id, cancellationToken);
+        var entity = await employeeRepository.GetByIdAsync(id, cancellationToken);
         if (entity == null) return false;
-        await departmentRepository.DeleteAsync(entity.Id,
-            cancellationToken);
+        await employeeRepository.DeleteAsync(entity.Id, cancellationToken);
         return true;
     }
 

@@ -137,6 +137,8 @@ public class EmployeesController(IEmployeeService employeeService) :
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
+        var ok = await employeeService.DeleteAsync(id, cancellationToken);
+        if (!ok) return NotFound();
         return NoContent();
     }
 
