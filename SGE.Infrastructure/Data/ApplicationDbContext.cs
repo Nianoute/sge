@@ -1,11 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SGE.Core.Entities;
 
 namespace SGE.Infrastructure.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext>
+        options) : base(options)
     {
     }
 
@@ -13,11 +16,13 @@ public class ApplicationDbContext : DbContext
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Attendance> Attendances { get; set; }
     public DbSet<LeaveRequest> LeaveRequests { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 // Configuration Department
+
         builder.Entity<Department>(entity =>
         {
             entity.HasKey(d => d.Id);
@@ -29,10 +34,13 @@ public class ApplicationDbContext : DbContext
         builder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.FirstName).IsRequired().HasMaxLength(50);
-            entity.Property(e => e.LastName).IsRequired().HasMaxLength(50);
+            entity.Property(e =>
+                e.FirstName).IsRequired().HasMaxLength(50);
+            entity.Property(e =>
+                e.LastName).IsRequired().HasMaxLength(50);
             entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
-            entity.Property(e => e.Salary).HasColumnType("decimal(18,2)");
+            entity.Property(e =>
+                e.Salary).HasColumnType("decimal(18,2)");
             entity.HasIndex(e => e.Email).IsUnique();
             entity.HasOne(e => e.Department)
                 .WithMany(d => d.Employees)
@@ -71,5 +79,41 @@ public class ApplicationDbContext : DbContext
                 .HasForeignKey(lr => lr.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
+        builder.Entity<ApplicationUser>(entity =>
+        {
+            entity.Property(u => u.FirstName).HasMaxLength(50);
+            entity.Property(u => u.LastName).HasMaxLength(50);
+            entity.Property(u => u.CreatedAt);
+        });
+        builder.Entity<RefreshToken>(entity =>
+        {
+            entity.HasKey(rt => rt.Id);
+            entity.Property(rt =>
+                rt.Token).IsRequired().HasMaxLength(500);
+            entity.Property(rt => rt.CreatedAt);
+            entity.HasOne(rt => rt.User)
+                .WithMany(u => u.RefreshTokens)
+                .HasForeignKey(rt => rt.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasIndex(rt => rt.Token).IsUnique();
+            entity.HasIndex(rt => new { rt.UserId, rt.CreatedAt });
+        });
+        builder.Entity<IdentityRole>().HasData(
+            new IdentityRole
+            {
+                Id = "1", Name = "Admin", NormalizedName =
+                    "ADMIN"
+            },
+            new IdentityRole
+            {
+                Id = "2", Name = "Manager", NormalizedName
+                    = "MANAGER"
+            },
+            new IdentityRole
+            {
+                Id = "3", Name = "User", NormalizedName =
+                    "USER"
+            }
+        );
     }
 }
