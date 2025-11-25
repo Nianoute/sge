@@ -139,7 +139,7 @@ public class EmployeesController(IEmployeeService employeeService) :
     {
         var ok = await employeeService.DeleteAsync(id, cancellationToken);
         if (!ok) return NotFound();
-        return NoContent();
+        return Ok(ok);
     }
 
     [HttpPost("import")]

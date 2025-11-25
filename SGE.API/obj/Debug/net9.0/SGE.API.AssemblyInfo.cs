@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SGE.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2c508350342fd54896254027a6781a716205cab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9706e45a55cc322f2a994c810d5e2c2ccea9246c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SGE.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SGE.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
