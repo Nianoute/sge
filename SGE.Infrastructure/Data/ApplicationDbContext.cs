@@ -1,14 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SGE.Core.Entities;
 
 namespace SGE.Infrastructure.Data;
 
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
-
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext>
+        options) : base(options)
     {
     }
 
@@ -22,6 +22,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     {
         base.OnModelCreating(builder);
 // Configuration Department
+
         builder.Entity<Department>(entity =>
         {
             entity.HasKey(d => d.Id);
@@ -33,10 +34,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         builder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.FirstName).IsRequired().HasMaxLength(50);
-            entity.Property(e => e.LastName).IsRequired().HasMaxLength(50);
+            entity.Property(e =>
+                e.FirstName).IsRequired().HasMaxLength(50);
+            entity.Property(e =>
+                e.LastName).IsRequired().HasMaxLength(50);
             entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
-            entity.Property(e => e.Salary).HasColumnType("decimal(18,2)");
+            entity.Property(e =>
+                e.Salary).HasColumnType("decimal(18,2)");
             entity.HasIndex(e => e.Email).IsUnique();
             entity.HasOne(e => e.Department)
                 .WithMany(d => d.Employees)
@@ -74,8 +78,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
                 .WithMany(e => e.LeaveRequests)
                 .HasForeignKey(lr => lr.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade);
-        }); 
-        // Configuration LeaveRequest
+        });
         builder.Entity<ApplicationUser>(entity =>
         {
             entity.Property(u => u.FirstName).HasMaxLength(50);
@@ -96,9 +99,21 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
             entity.HasIndex(rt => new { rt.UserId, rt.CreatedAt });
         });
         builder.Entity<IdentityRole>().HasData(
-            new IdentityRole { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
-            new IdentityRole { Id = "2", Name = "Manager", NormalizedName = "MANAGER" },
-            new IdentityRole { Id = "3", Name = "User", NormalizedName = "USER" }
+            new IdentityRole
+            {
+                Id = "1", Name = "Admin", NormalizedName =
+                    "ADMIN"
+            },
+            new IdentityRole
+            {
+                Id = "2", Name = "Manager", NormalizedName
+                    = "MANAGER"
+            },
+            new IdentityRole
+            {
+                Id = "3", Name = "User", NormalizedName =
+                    "USER"
+            }
         );
     }
 }

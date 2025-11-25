@@ -1,4 +1,4 @@
-﻿namespace SGE.Application.DTOs.Users;
+namespace SGE.Application.DTOs.Users;
 public class LoginDto
 {
     /// <summary>

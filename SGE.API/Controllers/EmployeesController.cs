@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SGE.Application.DTOs.Employees;
 using SGE.Application.Interfaces.Services;
-using Microsoft.AspNetCore.Authorization;
 
 namespace SGE.API.Controllers;
 
@@ -10,7 +10,7 @@ namespace SGE.API.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-[Authorize] // Tous les endpoints nécessitent une authentification
+[Authorize]
 public class EmployeesController(IEmployeeService employeeService) :
     ControllerBase
 {
@@ -22,6 +22,7 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     An asynchronous task that returns an action result containing an enumerable collection of EmployeeDto objects.
     /// </returns>
     [HttpGet]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<ActionResult<IEnumerable<EmployeeDto>>>
         GetAll(CancellationToken cancellationToken)
     {
@@ -40,6 +41,7 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     found; otherwise, a not found result.
     /// </returns>
     [HttpGet("{id:int}")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<EmployeeDto>> GetById(int id,
         CancellationToken cancellationToken)
     {
@@ -94,8 +96,8 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     An asynchronous task that returns an action result containing the created EmployeeDto object.
     /// </returns>
     [HttpPost]
-    [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<EmployeeDto>> Create(EmployeeCreateDto dto, CancellationToken cancellationToken)
+    public async Task<ActionResult<EmployeeDto>>
+        Create(EmployeeCreateDto dto, CancellationToken cancellationToken)
     {
         var created = await employeeService.CreateAsync(dto,
             cancellationToken);
@@ -114,6 +116,7 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     successful or <c>NotFound</c> if the employee is not found.
     /// </returns>
     [HttpPut("{id:int}")]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<IActionResult> Update(int id, EmployeeUpdateDto dto, CancellationToken cancellationToken)
     {
         var ok = await employeeService.UpdateAsync(id, dto, cancellationToken);
@@ -131,12 +134,16 @@ public class EmployeesController(IEmployeeService employeeService) :
     ///     if the employee does not exist.
     /// </returns>
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
-        return NoContent();
+        var ok = await employeeService.DeleteAsync(id, cancellationToken);
+        if (!ok) return NotFound();
+        return Ok(ok);
     }
 
     [HttpPost("import")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(EmployeeImportResultDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<EmployeeImportResultDto>> Import(
@@ -167,13 +174,13 @@ public class EmployeesController(IEmployeeService employeeService) :
     }
 
     [HttpGet("export")]
+    [Authorize(Roles = "Admin")]
     [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> Export(CancellationToken cancellationToken)
     {
-        // var fileBytes = await employeeService.ExportToExcelAsync(cancellationToken);
-        // var fileName = $"Employees_{DateTime.UtcNow:yyyyMMdd_HHmmss}.xlsx";
-        //
-        // return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
-        return Ok();
+        var fileBytes = await employeeService.ExportToExcelAsync(cancellationToken);
+        var fileName = $"Employees_{DateTime.UtcNow:yyyyMMdd_HHmmss}.xlsx";
+
+        return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
     }
 }

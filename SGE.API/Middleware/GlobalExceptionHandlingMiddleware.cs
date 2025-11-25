@@ -96,11 +96,6 @@ public class GlobalExceptionHandlingMiddleware
                 "UNAUTHORIZED",
                 401,
                 traceId),
-            NotImplementedException => ErrorResponse.Create(
-                "Fonctionnalité non implémentée.",
-                "NOT_IMPLEMENTED",
-                501,
-                traceId),
             TimeoutException => ErrorResponse.Create(
                 "L'opération a expiré.",
                 "TIMEOUT",

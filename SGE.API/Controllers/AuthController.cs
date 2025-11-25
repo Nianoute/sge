@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SGE.Application.DTOs.Users;
 using SGE.Application.Interfaces.Services;
+
 namespace SGE.API.Controllers;
+
 [ApiController]
 [Route("api/[controller]")]
 public class AuthController(IAuthService authService) : ControllerBase
@@ -13,6 +15,7 @@ public class AuthController(IAuthService authService) : ControllerBase
         var result = await authService.RegisterAsync(registerDto);
         return Ok(result);
     }
+
     [HttpPost("login")]
     public async Task<ActionResult<AuthResponseDto>> Login(LoginDto
         loginDto)
@@ -20,6 +23,7 @@ public class AuthController(IAuthService authService) : ControllerBase
         var result = await authService.LoginAsync(loginDto);
         return Ok(result);
     }
+
     [HttpPost("refresh")]
     public async Task<ActionResult<AuthResponseDto>>
         RefreshToken(RefreshTokenDto refreshTokenDto)
@@ -28,6 +32,7 @@ public class AuthController(IAuthService authService) : ControllerBase
             authService.RefreshTokenAsync(refreshTokenDto);
         return Ok(result);
     }
+
     [HttpPost("logout/{userId:int}")]
     public async Task<ActionResult> Logout(int userId)
     {

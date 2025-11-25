@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SGE.Application.DTOs;
 using SGE.Application.Interfaces.Services;
 
@@ -10,6 +11,7 @@ namespace SGE.API.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class DepartmentsController(IDepartmentService departmentService) : ControllerBase
 {
     /// <summary>
@@ -18,6 +20,7 @@ public class DepartmentsController(IDepartmentService departmentService) : Contr
     /// <param name="cancellationToken">A token to cancel the  operation.</param>
     /// <returns>An <see cref="ActionResult" /> containing an enumerable  collection of <see cref="DepartmentDto" />.</returns>
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<DepartmentDto>>>
         GetAll(CancellationToken cancellationToken)
     {
@@ -35,6 +38,7 @@ public class DepartmentsController(IDepartmentService departmentService) : Contr
     ///     found, otherwise a  NotFound result.
     /// </returns>
     [HttpGet("{id:int}")]
+    [Authorize]
     public async Task<ActionResult<DepartmentDto>> GetById(int id, CancellationToken cancellationToken)
     {
         var dept = await departmentService.GetByIdAsync(id,
@@ -53,6 +57,7 @@ public class DepartmentsController(IDepartmentService departmentService) : Contr
     ///     and other  details.
     /// </returns>
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<DepartmentDto>>
         Create(DepartmentCreateDto dto, CancellationToken cancellationToken)
     {
@@ -73,6 +78,7 @@ public class DepartmentsController(IDepartmentService departmentService) : Contr
     ///     <see cref="NoContentResult" /> if  successful, or <see cref="NotFoundResult" /> if the department is not  found.
     /// </returns>
     [HttpPut("{id:int}")]
+    [Authorize(Roles = "Admin,Manager")]
     public async Task<IActionResult> Update(int id, DepartmentUpdateDto
         dto, CancellationToken cancellationToken)
     {
@@ -92,6 +98,7 @@ public class DepartmentsController(IDepartmentService departmentService) : Contr
     ///     otherwise NotFound if  the department does not exist.
     /// </returns>
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id, CancellationToken
         cancellationToken)
     {
