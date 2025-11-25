@@ -318,3 +318,12 @@ C:\Users\nfaly\Desktop\ecoles\Ynov-M2\webservices\pt-1\codes\sge\SGE.API\bin\Deb
 C:\Users\nfaly\Desktop\ecoles\Ynov-M2\webservices\pt-1\codes\sge\SGE.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\nfaly\Desktop\ecoles\Ynov-M2\webservices\pt-1\codes\sge\SGE.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\nfaly\Desktop\ecoles\Ynov-M2\webservices\pt-1\codes\sge\SGE.API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\mewtw\RiderProjects\SGE\SGE.API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll

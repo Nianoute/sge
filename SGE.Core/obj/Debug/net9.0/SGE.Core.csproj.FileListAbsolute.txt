@@ -23,3 +23,4 @@ C:\Users\nfaly\Desktop\ecoles\Ynov-M2\webservices\pt-1\codes\sge\SGE.Core\obj\De
 C:\Users\nfaly\Desktop\ecoles\Ynov-M2\webservices\pt-1\codes\sge\SGE.Core\obj\Debug\net9.0\SGE.Core.pdb
 C:\Users\nfaly\Desktop\ecoles\Ynov-M2\webservices\pt-1\codes\sge\SGE.Core\obj\Debug\net9.0\ref\SGE.Core.dll
 C:\Users\nfaly\Desktop\ecoles\Ynov-M2\webservices\pt-1\codes\sge\SGE.Core\obj\Debug\net9.0\SGE.Core.csproj.AssemblyReference.cache
+C:\Users\mewtw\RiderProjects\SGE\SGE.Core\obj\Debug\net9.0\SGE.Core.csproj.AssemblyReference.cache
